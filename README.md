@@ -162,3 +162,92 @@ server {
 ```
 docker-compose up -d
 ```
+* docker-compose.yml
+* html
+    * index.php
+* nginx
+    * conf
+        * nginx.conf
+    * conf.d
+        * default.conf
+* *mariadb*
+    * *data*
+    * *initdb*
+        * *tinanic.sql*
+    * *backup*
+* *php*
+    * *Dockerfile*
+
+จากนั้นแก้ไขไฟล์docker-compose.yml (ของFolder lemp_dock) ให้เป็นดังนี้
+```
+version: '3'
+
+services:
+  php:
+    container_name: lemp_php
+    build: php/
+    restart: unless-stopped
+    volumes:
+      - ./html/:/var/www/html
+    expose:
+      - "9000"
+    depends_on:
+      - db
+
+  nginx:
+    container_name: lemp_nginx
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    volumes:
+      - ./html/:/var/www/html
+
+      - ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+
+    ports:
+      - "80:80"
+      
+  db:
+    container_name: lemp_mariadb
+    image: mariadb:latest
+    restart: unless-stopped
+    volumes:
+      - ./mariadb/initdb/:/docker-entrypoint-initdb.d
+      - ./mariadb/data/:/var/lib/mysql/
+    environment:
+      - MYSQL_ROOT_PASSWORD=devops101
+      - MYSQL_DATABASE=devops_db
+      - MYSQL_USER=devops
+      - MYSQL_PASSWORD=devops101
+
+networks:
+  default:
+    external:
+      name:
+        web_network
+```
+ภายใน Dockerfile จะมีการติดตั้ง mysqli เพื่อเรียก Mariadb จาก php
+```
+FROM php:7.4-fpm-alpine
+
+RUN docker-php-ext-install mysqli
+```
+แล้วแก้ไขไฟล์ index.php
+```
+<?php
+   $servername = "db";
+   $username = "devops";
+   $password = "devops101";
+
+   $dbhandle = mysqli_connect($servername, $username, $password);
+   $selected = mysqli_select_db($dbhandle, "titanic");
+   
+   echo "Connected database server<br>";
+   echo "Selected database";
+?>
+```
+
+สร้าง php Image ด้วยคำสั่ง
+```
+docker-compose build
+```
