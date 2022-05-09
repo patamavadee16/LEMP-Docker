@@ -1,4 +1,8 @@
 # LEMP-Docker
+L = Linux OS
+E = (E)Nginx Web Server
+M = MariaDB
+P = PHP
 
 ### Config Docker-compose เพื่อให้งาน Nginx Web Server
 
