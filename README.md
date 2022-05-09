@@ -1,4 +1,4 @@
-# วิธีติดตั้ง LEMP stack โดยใช้ Docker.md
+# วิธีติดตั้ง LEMP stack ด้วย Docker Container
 
 L = Linux OS
 
