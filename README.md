@@ -9,7 +9,8 @@
     * index.html
 
 ภายในไฟล์ docker-compose.yml
-> version: '3'
+```Makeup
+version: '3'
 
 services:
   nginx:
@@ -26,4 +27,4 @@ networks:
     external:
       name:
         web_network
-
+```
