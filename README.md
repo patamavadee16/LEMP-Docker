@@ -28,3 +28,13 @@ networks:
       name:
         web_network
 ```
+ภายในไฟล์ index.html
+```html
+Hello Nginx
+```
+
+แล้วรันContainer ด้วย docker-compose ด้วยคำสั่ง
+```
+docker-compose up -d
+```
+
