@@ -162,6 +162,7 @@ server {
 ```
 docker-compose up -d
 ```
+## Config MariaDB Container
 * docker-compose.yml
 * html
     * index.php
