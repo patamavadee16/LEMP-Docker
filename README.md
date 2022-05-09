@@ -163,6 +163,7 @@ server {
 docker-compose up -d
 ```
 ## Config MariaDB Container
+สร้าง Folder และไฟล์เพิ่ม ใน Project lemp_dock
 * docker-compose.yml
 * html
     * index.php
@@ -227,6 +228,8 @@ networks:
       name:
         web_network
 ```
+
+download ไฟล์tinanic.sql ไว้ในinitdb
 ภายใน Dockerfile จะมีการติดตั้ง mysqli เพื่อเรียก Mariadb จาก php
 ```
 FROM php:7.4-fpm-alpine
