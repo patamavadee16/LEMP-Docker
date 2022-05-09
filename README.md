@@ -8,15 +8,19 @@ M = MariaDB
 
 P = PHP
 
-### Config Docker-compose เพื่อให้งาน Nginx Web Server
+### Nginx Web Server
 
-สร้าง Project ใหม่ภายใน Folder nginx_dock ประกอบด้วย
+การติดตั้ง Nginx Web Server
+
+ขั้นตอนการติดตั้งการสร้าง Docker Network
+
+1. สร้าง Project ใหม่ภายใน Folder nginx_dock ประกอบด้วย
 
 * docker-compose.yml
 * static-html
     * index.html
 
-ภายในไฟล์ docker-compose.yml
+2. ภายในไฟล์ docker-compose.yml
 ```Makeup
 version: '3'
 
@@ -36,19 +40,23 @@ networks:
       name:
         web_network
 ```
-ภายในไฟล์ index.html
+3.ภายในไฟล์ index.html
 ```html
 Hello Nginx
 ```
 
-แล้วรันContainer ด้วย docker-compose ด้วยคำสั่ง
+4.แล้วรันContainer ด้วย docker-compose ด้วยคำสั่ง
 ```
 docker-compose up -d
 ```
 
-### Config Nginx และ php FPM Container
+### PHP
 
-สร้าง Project ใหม่ภายใน Folder lemp_dock ประกอบด้วย
+*Nginx + php*
+
+การ Config Nginx และ php FPM Container
+
+1. สร้าง Project ใหม่ภายใน Folder lemp_dock ประกอบด้วย
 
 * docker-compose.yml
 * html
@@ -59,7 +67,7 @@ docker-compose up -d
     * conf.d
         * default.conf
 
-ภายในไฟล์ docker-compose.yml (ของFolder lemp_dock)
+2. ภายในไฟล์ docker-compose.yml
 ```Makeup
 version: '3'
 
@@ -92,12 +100,12 @@ networks:
       name:
         web_network
 ```
-ภายในไฟล์ index.php
+3. ภายในไฟล์ index.php
 ```
 <?php phpinfo();?>
 ```
 
-ภายในไฟล์ nginx.conf
+4. ภายในไฟล์ nginx.conf
 ```
 worker_processes 1;
 daemon off;
@@ -129,7 +137,7 @@ http {
 }
 ```
 
-ภายในไฟล์ default.conf
+5. ภายในไฟล์ default.conf
 ```
 server {
    charset utf-8;
@@ -168,12 +176,17 @@ server {
 * *root /var/www/html; เป็นการตั้งค่า Nginx ให้รันใน Folder /var/www/html*
 * *index index.php; เป็นการกำหนด index file*
 
-แล้วรันContainer ด้วย docker-compose ด้วยคำสั่ง
+6. รันContainer ด้วย docker-compose ด้วยคำสั่ง
 ```
 docker-compose up -d
 ```
-## Config MariaDB Container
-สร้าง Folder และไฟล์เพิ่ม ใน Project lemp_dock
+## MariaDB
+
+*Nginx + php + MariaDB*
+
+การ Config MariaDB Container
+
+1. สร้าง Folder และไฟล์เพิ่ม ใน Project lemp_dock
 * docker-compose.yml
 * html
     * index.php
@@ -190,7 +203,9 @@ docker-compose up -d
 * *php*
     * *Dockerfile*
 
-จากนั้นแก้ไขไฟล์docker-compose.yml (ของFolder lemp_dock) ให้เป็นดังนี้
+โดย download ไฟล์tinanic.sql ไว้ในinitdb
+
+2. จากนั้นแก้ไขไฟล์docker-compose.yml ให้เป็นดังนี้
 ```
 version: '3'
 
@@ -239,14 +254,13 @@ networks:
         web_network
 ```
 
-download ไฟล์tinanic.sql ไว้ในinitdb
-ภายใน Dockerfile จะมีการติดตั้ง mysqli เพื่อเรียก Mariadb จาก php
+3. ภายใน Dockerfile จะมีการติดตั้ง mysqli เพื่อเรียก Mariadb จาก php
 ```
 FROM php:7.4-fpm-alpine
 
 RUN docker-php-ext-install mysqli
 ```
-แล้วแก้ไขไฟล์ index.php
+4. แล้วแก้ไขไฟล์ index.php
 ```
 <?php
    $servername = "db";
@@ -261,7 +275,13 @@ RUN docker-php-ext-install mysqli
 ?>
 ```
 
-สร้าง php Image ด้วยคำสั่ง
+5. สร้าง php Image ด้วยคำสั่ง
 ```
 docker-compose build
+```
+
+6. ดู Containers ที่รันทั้งหมดด้วยคำสั่ง
+
+```
+docker-compose ps
 ```
