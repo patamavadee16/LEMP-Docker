@@ -1,5 +1,7 @@
 # วิธีติดตั้ง LEMP stack ด้วย Docker Container
 
+LEMP ประกอบด้วย
+
 L = Linux OS
 
 E = (E)Nginx Web Server
