@@ -39,7 +39,7 @@ networks:
       name:
         web_network
 ```
-3.ภายในไฟล์ index.html
+3. ภายในไฟล์ index.html
 ```html
 Hello Nginx
 ```
@@ -49,7 +49,7 @@ Hello Nginx
 docker network create web_network
 ```
 
-5.แล้วรันContainer ด้วย docker-compose ด้วยคำสั่ง
+5. แล้วรันContainer ด้วย docker-compose ด้วยคำสั่ง
 ```
 docker-compose up -d
 ```
@@ -207,7 +207,7 @@ docker-compose up -d
 * *php*
     * *Dockerfile*
 
-โดย download ไฟล์tinanic.sql ไว้ในinitdb
+โดย download ไฟล์tinanic.sql นำไปไว้ใน initdb
 
 2. จากนั้นแก้ไขไฟล์docker-compose.yml ให้เป็นดังนี้
 ```
