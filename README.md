@@ -15,7 +15,7 @@ P = PHP
 การติดตั้ง Nginx Web Server
 
 
-1. สร้าง Project ใหม่ภายใน Folder nginx_dock ประกอบด้วย
+1. สร้าง Project ใหม่ภายใน Folder _nginx_dock_ ประกอบด้วย
 
 * docker-compose.yml
 * static-html
@@ -62,7 +62,7 @@ docker-compose up -d
 
 การ Config Nginx และ php FPM Container
 
-1. สร้าง Project ใหม่ภายใน Folder lemp_dock ประกอบด้วย
+1. สร้าง Project ใหม่ภายใน Folder _lemp_dock_ ประกอบด้วย
 
 * docker-compose.yml
 * html
@@ -197,7 +197,7 @@ docker-compose up -d
 
 การ Config MariaDB Container
 
-1. สร้าง Folder และไฟล์เพิ่ม ใน Project lemp_dock
+1. สร้าง Folder และไฟล์เพิ่ม ใน Project _lemp_dock_
 * docker-compose.yml
 * html
     * index.php
