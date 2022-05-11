@@ -8,11 +8,10 @@ M = MariaDB
 
 P = PHP
 
-### Nginx Web Server
+### (E)Nginx Web Server
 
 การติดตั้ง Nginx Web Server
 
-ขั้นตอนการติดตั้งการสร้าง Docker Network
 
 1. สร้าง Project ใหม่ภายใน Folder nginx_dock ประกอบด้วย
 
@@ -45,7 +44,12 @@ networks:
 Hello Nginx
 ```
 
-4.แล้วรันContainer ด้วย docker-compose ด้วยคำสั่ง
+4. สร้าง network ด้วยคำสั่ง
+```
+docker network create web_network
+```
+
+5.แล้วรันContainer ด้วย docker-compose ด้วยคำสั่ง
 ```
 docker-compose up -d
 ```
