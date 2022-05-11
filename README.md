@@ -180,7 +180,12 @@ server {
 * *root /var/www/html; เป็นการตั้งค่า Nginx ให้รันใน Folder /var/www/html*
 * *index index.php; เป็นการกำหนด index file*
 
-6. รันContainer ด้วย docker-compose ด้วยคำสั่ง
+ุ6. สร้าง network ด้วยคำสั่ง
+```
+docker network creat web_network
+```
+
+ึึ7. รันContainer ด้วย docker-compose ด้วยคำสั่ง
 ```
 docker-compose up -d
 ```
